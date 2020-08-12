@@ -1,4 +1,5 @@
 import React from 'react';
+import './CommonCSS.css';
 
 class Lomake extends React.Component {
 	

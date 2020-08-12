@@ -3,6 +3,7 @@ import Lomake from './Lomake';
 import Lista from './Lista';
 import MuokkausLomake from './MuokkausLomake';
 import './App.css';
+import './CommonCSS.css';
 
 
 
@@ -35,23 +36,27 @@ class App extends React.Component {
 	render () {
 				
 		return (
+
 		<div>
-		<MuokkausLomake shouldRender={this.state.itemSelected} itemBody={this.state.body}	
-			               itemID = {this.state.valittuID} itemOtsikko = {this.state.valittuOtsikko }/>
-		
-		<div> 
 		<h1 className ="Otsikko"> Frontti App</h1>
 		
-		<div> 
-			<Lomake url = {this.state.url}/>
-		</div>		
+			<div>
+			<MuokkausLomake className="MuokkasLomake" shouldRender={this.state.itemSelected} 
+							itemBody={this.state.body}	itemID = {this.state.valittuID} 
+							itemOtsikko = {this.state.valittuOtsikko }/>
+			
+			</div> 
 		
-		<div>
-			<Lista callBack={this.callBack.bind(this)}/>
-		</div>
+			<div> 
+				<Lomake className="LuontiLomake" url = {this.state.url}/>
+			</div>		
+		
+			<div>
+				<Lista className="Lista" callBack={this.callBack.bind(this)}/>
+			</div>
 		
 		</div>
-		</div>
+		
 		)
 	}
 }

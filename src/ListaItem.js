@@ -1,4 +1,5 @@
 import React from 'react';
+import './CommonCSS.css';
 
 class ListaItem extends React.Component {
 
@@ -16,7 +17,7 @@ class ListaItem extends React.Component {
 	
 	render() {
 		return(
-	<h2 onClick={this.itemWasClicked}> {this.props.title} </h2>
+	<h2 classname = "listaItem"onClick={this.itemWasClicked}> {this.props.title} </h2>
 		)
 	}
 }

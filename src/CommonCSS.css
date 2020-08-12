@@ -1,0 +1,23 @@
+body {
+    margin: 0;   
+  }
+
+.lomakeComponent {
+
+    position: absolute;
+    right: 10px;
+
+    Color: rgb(45, 49, 58);
+    text-align: left;
+    width: 300px;
+}
+
+.listaDisplay {
+    
+    Color: Green;
+    text-align: right;
+    width: 60%;
+    font-size: 15px;
+}
+
+
