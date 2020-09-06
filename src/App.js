@@ -1,10 +1,11 @@
 import React from 'react';
-import Lomake from './Lomake';
-import Lista from './Lista';
-import MuokkausLomake from './MuokkausLomake';
 import './App.css';
 import './CommonCSS.css';
 
+import ListComponent from './ListComponent';
+import Lomake from './Lomake';
+import MuokkausLomake from './MuokkausLomake';
+import FilterComponent from './FilterComponent';
 
 
 class App extends React.Component {
@@ -13,48 +14,35 @@ class App extends React.Component {
 		super(props);
 
 	    this.state = {
-			url : 'http://jsonplaceholder.typicode.com/posts',
-			valittuID: 0,
-			valittuOtsikko: "",
-			itemSelected: false,
+			url : 'http://jsonplaceholder.typicode.com/posts',			
 		};
 	}
 
-	
-	callBack(Body, Otsikko, Id) {		
-		
-		this.setState(
-			{itemSelected: true,
-			 valittuID: Id,
-			 valittuOtsikko: Otsikko,
-			 body: Body});
-
-			 console.log(this.state.email);
-		
-	}
-  
 	render () {
 				
 		return (
 
 		<div>
-		<h1 className ="Otsikko"> Frontti App</h1>
+		<h1 className ="Header"> Frontti App</h1>
 		
-			<div>
-			<MuokkausLomake className="MuokkasLomake" shouldRender={this.state.itemSelected} 
+			<div className='MuokkausLomake'>
+			<MuokkausLomake shouldRender={this.state.itemSelected} 
 							itemBody={this.state.body}	itemID = {this.state.valittuID} 
 							itemOtsikko = {this.state.valittuOtsikko }/>
 			
 			</div> 
 		
-			<div> 
-				<Lomake className="LuontiLomake" url = {this.state.url}/>
-			</div>		
-		
-			<div>
-				<Lista className="Lista" callBack={this.callBack.bind(this)}/>
+			<div className="LuontiLomake"> 
+				<Lomake url = {this.state.url}/>
 			</div>
-		
+
+			<div className='FilterButtonsArea'>
+				<FilterComponent className='FiltersButtonsArea'/>
+			</div>
+
+			<div className ='ListaDisplay'>
+				<ListComponent className="hookCounter"/>
+			</div>
 		</div>
 		
 		)

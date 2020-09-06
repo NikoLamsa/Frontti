@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 class MuokkausLomake extends React.Component {
 
@@ -10,27 +11,24 @@ class MuokkausLomake extends React.Component {
 		this.Muutos = this.Muutos.bind(this);
 		
 		this.state = {
-			newEmail: this.props.itemEmail
+			newPUTValue: null,
+			j : '' 
 		};
 	}
 
-	Muutos(e) {	
-
+	Muutos(event) {	
 		this.setState({
-			newEmail: e.target.value
+			newPUTValue: event.target.value
 		});
 	}
 
-	sendPUT(event) {
+	sendPUT() {
 		
-		const id = event.target.value;
-		console.log(this.state.newEmail);
-		
-		fetch('http://jsonplaceholder.typicode.com/posts/' + id, {
+		fetch('http://jsonplaceholder.typicode.com/posts/' + this.props.itemID, {
 			method: "PUT",
 			body: JSON.stringify( {
 				id: this.props.itemID,
-				body: this.props.itemEmail
+				body: this.props.newPUTValue
 			}),
 			headers: {"Content-type": "application/json"} 
 			}
@@ -39,12 +37,11 @@ class MuokkausLomake extends React.Component {
 	}
 	
 	// lähettää DELETE requestin sillä id arvolla jolla lomake on luotu
-	sendDELETE(event) {
+	sendDELETE() {
 
-		const id = event.target.value;
-		console.log('http://jsonplaceholder.typicode.com/posts/' + id);
+		console.log(this.props.itemID);
 
-		fetch('http://jsonplaceholder.typicode.com/posts/' + id, {
+		fetch('http://jsonplaceholder.typicode.com/posts/' + this.props.itemID, {
 			method: "DELETE"
 		})
 		.then(response => console.log(response))
@@ -53,29 +50,31 @@ class MuokkausLomake extends React.Component {
 	
 	render() {
 		
-		if (this.props.shouldRender) {
-			
-			console.log("passed IF");
+	
 			return(
 				<div>
+				<h2> DETAILS  </h2>
 				<label> Valittu ID: {this.props.itemID} </label><br/>
 				<label> Valittu Otsikko: {this.props.itemOtsikko}</label><br/>
-				<label> Valittu Sisältö: {this.props.itemBody}</label><br/>
+				<label> Valittu Sisältö: {this.props.itemBody}</label><br/><br/>
 		
 				
 				<input type="text" onChange={this.Muutos}></input>		
 				<button value = {this.props.itemID} onClick={this.sendPUT}> Save Changes </button><br/>
 				
-				<button value={this.props.itemID} onClick={this.sendDELETE}> DELETE </button>
+				<button onClick={this.sendDELETE}> DELETE </button>
 				</div>
 			)
-		} 
-		else {
-			console.log("did not pass IF");
-			return (<br/>) 
-		}
-
 	}
 }
 
-export default MuokkausLomake;
+function mapStateToProps(state) {
+
+	return {
+		itemID: state.itemSelected.selectedId,
+		itemOtsikko: state.itemSelected.selectedTitle,
+		itemBody: state.itemSelected.selectedBody
+	}
+}
+
+export default connect(mapStateToProps)(MuokkausLomake)

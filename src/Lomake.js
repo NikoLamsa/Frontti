@@ -1,5 +1,4 @@
 import React from 'react';
-import './CommonCSS.css';
 
 class Lomake extends React.Component {
 	
@@ -40,7 +39,7 @@ class Lomake extends React.Component {
 	render () {
 		
 		return (
-		<div className = "lomakeComponent"> 
+		<div> 
 		<h3>Tallenna uutta tietoa </h3>
 		palvelin: <br/> {this.props.url}
 		<hr/>	
