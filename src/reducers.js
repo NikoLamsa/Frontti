@@ -20,7 +20,7 @@ function setGetFilter(state = FilterState.NO_FILTER, action) {
     switch(action.type) {
         case SET_NAME_FILTER: return Object.assign({}, state, {filterText: action.filterText, currentFilter: FilterState.NAME_FILTER})
         case SET_ID_FILTER: return Object.assign({}, state, {FilterId: action.filterIdNumber, currentFilter: FilterState.ID_FILTER})
-        case RESET_FILTER: return Object.assign({}, state, {currentFilter: FilterState.NO_FILTER})
+        case RESET_FILTER: return Object.assign({}, state, {currentFilter: FilterState.NO_FILTER, FilterId: '', filterText: ''})
         default: return state
     }
 }

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { setFilterByTitle, setFilterById } from './actions';
+import { setFilterByTitle, setFilterById, resetFilter } from './actions';
 
 function FilterComponent (props) {
 
@@ -36,7 +36,7 @@ function FilterComponent (props) {
             </label>
             <br/>
             <br/>
-            <button>Reset filters</button>
+            <button onClick={() => props.dispatch(resetFilter())}>Reset filters</button>
         </div>
     )
 
