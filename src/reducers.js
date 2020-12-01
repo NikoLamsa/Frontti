@@ -3,6 +3,10 @@ import { DO_API_UPDATE, API_UPDATE_DONE, ApiState} from './actions';
 import { combineReducers } from 'redux';
 
 
+function defaultFilter () {
+    return Object.assign({}, state, {currentFilter: FilterState.NO_FILTER, FilterId: '', filterText: ''});
+}
+
 function itemSelected(state = 0, action) {
 
     switch (action.type) {
@@ -15,7 +19,7 @@ function itemSelected(state = 0, action) {
     }
 }
 
-function setGetFilter(state = FilterState.NO_FILTER, action) {
+function setGetFilter(state = defaultFilter(), action) {
 
     switch(action.type) {
         case SET_NAME_FILTER: return Object.assign({}, state, {filterText: action.filterText, currentFilter: FilterState.NAME_FILTER})
